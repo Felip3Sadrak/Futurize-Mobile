@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
-import { View, Text, TextInput, TouchableOpacity, StyleSheet, Alert, Image } from 'react-native';
+import { View, Text, StyleSheet, TextInput, TouchableOpacity, Image, Button, Keyboard } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import useAuth from './configs/useAuth'; // Certifique-se de que o caminho está correto
 
 const Loginf = () => {
-  const [email, setEmail] = useState('');
+  const [email, setEmail] = useState('S');
   const [password, setPassword] = useState('');
   const { signIn } = useAuth(); // Obtém o método de autenticação do contexto
   const navigation = useNavigation();
@@ -48,12 +48,7 @@ const Loginf = () => {
       <TouchableOpacity style={styles.button} onPress={handleLogin}>
         <Text style={styles.buttonText}>Login</Text>
       </TouchableOpacity>
-      <View style={styles.accountContainer}>
-        <Text style={styles.accountText}>Não tem uma conta?</Text>
-        <TouchableOpacity onPress={() => navigation.navigate("CriarConta")}>
-          <Text style={styles.accountLink}>Registre-se</Text>
-        </TouchableOpacity>
-      </View>
+      
       <TouchableOpacity onPress={() => navigation.navigate("RecuperarSenha")}>
         <Text style={styles.forgotPassword}>
           Esqueceu sua senha? Redefinir agora
@@ -71,10 +66,18 @@ const styles = StyleSheet.create({
     backgroundColor: '#f5f5f5',
   },
   logo: {
-    width: 100,
-    height: 100,
-    alignSelf: 'center',
+      width: 250,
+      height:50,
+      alignSelf: 'center',
+      marginTop: 15,
+      marginBottom: 10
+  },
+  title: {
+    fontSize: 32,
+    fontWeight: 'bold',
     marginBottom: 20,
+    textAlign: 'center',
+    color: '#333',
   },
   loginTitle: {
     fontSize: 24,
@@ -82,6 +85,12 @@ const styles = StyleSheet.create({
     marginBottom: 10,
     textAlign: 'center',
     color: '#333',
+  },
+  description: {
+    fontSize: 16,
+    marginBottom: 20,
+    textAlign: 'center',
+    color: '#555',
   },
   input: {
     borderWidth: 1,
@@ -117,10 +126,10 @@ const styles = StyleSheet.create({
     marginLeft: 5,
   },
   forgotPassword: {
+    fontSize: 16,
     color: '#007bff',
     textAlign: 'center',
-    marginTop: 15,
+    marginTop: 10,
   },
 });
-
 export default Loginf;
